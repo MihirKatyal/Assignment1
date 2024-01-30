@@ -19,8 +19,6 @@ def list_directory(path, options):
 
     files.sort()
 
-    files.sort(key=lambda x: (os.path.isdir(x), x))  # Sort files first, then directories
-
     for file in files:
         print(file)
 
@@ -67,8 +65,24 @@ def main():
             options = {arg: args[i + 1] for i, arg in enumerate(args[2:]) if arg.startswith('-')}
 
             list_directory(directory_path, options)
+        elif command == 'C':
+            if len(args) < 4 or args[2] != '-n':
+                print("Invalid command. Usage: C [Directory] -n [name]")
+                continue
+
+            directory_path = args[1]
+            name = args[3]
+
+            create_file(directory_path, name)
+        elif command == 'D':
+            if len(args) < 2:
+                print("Please provide a file path.")
+                continue
+
+            file_path = Path(args[1])
+            read_file(file_path)
         else:
-            print("Invalid command. Please use 'L' to list or 'Q' to quit.")
+            print("Error")
 
 if __name__ == "__main__":
     main()
