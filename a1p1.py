@@ -38,14 +38,16 @@ def delete_file(file_path):
     else:
         print("ERROR")
 
-
-
-
-
-
-
-
-
+def read_file(file_path):
+    if file_path.suffix != ".dsu":
+        print("ERROR")
+    elif not file_path.exists():
+        print("ERROR")
+    elif file_path.stat().st_size == 0:
+        print("EMPTY")
+    else:
+        with file_path.open() as file:
+            print(file.read().strip())
 
 def main():
     while True:
