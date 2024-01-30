@@ -6,6 +6,18 @@ def list_directory(path, options):
         if file_path.is_file():
             files.append(file_path)
 
+    if '-f' in options:
+        files = [file for file in files if file.is_file()]
+    elif '-r' not in options:
+        files = [file for file in files if file.parent == Path(path)]
+
+    if '-s' in options:
+        files = [file for file in files if options['-s'] in file.name]
+
+    if '-e' in options:
+        files = [file for file in files if file.suffix == options['-e']]
+
+    files.sort()
 
     files.sort(key=lambda x: (os.path.isdir(x), x))  # Sort files first, then directories
 
