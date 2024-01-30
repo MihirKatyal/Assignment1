@@ -24,6 +24,24 @@ def list_directory(path, options):
     for file in files:
         print(file)
 
+
+def create_file(directory, name):
+    new_file = Path(directory) / f"{name}.dsu"
+    new_file.touch()
+    print(new_file)
+
+
+
+
+
+
+
+
+
+
+
+
+
 def main():
     while True:
         user_input = input("Enter command: ")
