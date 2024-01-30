@@ -24,14 +24,19 @@ def list_directory(path, options):
     for file in files:
         print(file)
 
-
 def create_file(directory, name):
     new_file = Path(directory) / f"{name}.dsu"
     new_file.touch()
     print(new_file)
 
-
-
+def delete_file(file_path):
+    if file_path.suffix != ".dsu":
+        print("ERROR")
+    elif file_path.exists():
+        file_path.unlink()
+        print(f"{file_path} DELETED")
+    else:
+        print("ERROR")
 
 
 
